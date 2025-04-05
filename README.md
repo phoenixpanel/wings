@@ -24,3 +24,46 @@ You can run this software on any machine to get that machine to communicate with
     ```bash
     sudo /usr/local/bin/wings
     ```
+## Running as a Service (systemd)
+
+To run Wings as a background service using systemd:
+
+1.  **Create the systemd service file:**
+    Create a file named `/etc/systemd/system/wings.service` with the following content:
+
+    ```ini
+    [Unit]
+    Description=PhoenixPanel Wings Daemon
+    After=docker.service
+    Requires=docker.service
+    PartOf=docker.service
+
+    [Service]
+    User=root
+    WorkingDirectory=/etc/phoenixpanel
+    LimitNOFILE=4096
+    PIDFile=/var/run/wings/daemon.pid
+    ExecStart=/usr/local/bin/wings
+    Restart=on-failure
+    StartLimitInterval=180
+    StartLimitBurst=30
+    RestartSec=5s
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+2.  **Create the PID directory:**
+    ```bash
+    sudo mkdir -p /var/run/wings
+    ```
+
+3.  **Enable and start the service:**
+    ```bash
+    sudo systemctl enable --now wings.service
+    ```
+
+4.  **Check the status:**
+    ```bash
+    sudo systemctl status wings.service
+    ```
