@@ -63,7 +63,7 @@ var versionCommand = &cobra.Command{
 	Use:   "version",
 	Short: "Prints the current executable version and exits.",
 	Run: func(cmd *cobra.Command, _ []string) {
-		fmt.Printf("wings v%s\nCopyright © 2018 - %d Dane Everitt & Contributors\n", system.Version, time.Now().Year())
+		fmt.Printf("wings v%s\nCopyright © 2025 - %d PhoenixPanel & Contributors\n", system.Version, time.Now().Year())
 	},
 }
 
@@ -443,7 +443,7 @@ __ [blue][bold]phoenixpanel[reset] _____/___/_______ _______ ______
         \___/\___/___/___/___/___    /______/
                             /_______/ [bold]%s[reset]
 
-Copyright © 2018 - %d Dane Everitt & Contributors
+Copyright © 2025 - %d PhoenixPanel & Contributors
 
 Website:  https://phoenixpanel.io
  Source:  https://github.com/phoenixpanel/wings
